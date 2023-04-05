@@ -18,11 +18,17 @@ const listItems = [];
 let dragStartIndex;
 
 const createList = () => {
-  [...richestCompanies].forEach((company, index) => {
-    const listItem = document.createElement('li');
-    listItem.setAttribute('data-index', index);
+  [...richestCompanies]
+    .map(company => ({ value: company, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(company => company.value)
+    .forEach((company, index) => {
+      console.log(company);
 
-    listItem.innerHTML = `
+      const listItem = document.createElement('li');
+      listItem.setAttribute('data-index', index);
+
+      listItem.innerHTML = `
       <span class="number">${index + 1}</span>
       <div class="draggable" draggable="true">
         <p class="company-name">${company}</p>
@@ -30,9 +36,9 @@ const createList = () => {
       </div>
     `;
 
-    listItems.push(listItem);
-    draggableList.appendChild(listItem);
-  });
+      listItems.push(listItem);
+      draggableList.appendChild(listItem);
+    });
 };
 
 createList();
