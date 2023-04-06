@@ -23,8 +23,6 @@ const createList = () => {
     .sort((a, b) => a.sort - b.sort)
     .map(company => company.value)
     .forEach((company, index) => {
-      console.log(company);
-
       const listItem = document.createElement('li');
       listItem.setAttribute('data-index', index);
 

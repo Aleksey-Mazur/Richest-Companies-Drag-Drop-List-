@@ -1,6 +1,7 @@
 html,
 body {
-  height: 100%;
+  font-family: $main-font;
+  background-color: $main-color;
 }
 
 .wrapper {
@@ -10,11 +11,165 @@ body {
 }
 
 .main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
   flex: 1 0 auto;
+  gap: 1rem;
+  padding: 1rem;
+
+  h1,
+  .description {
+    text-align: center;
+    color: $heading-color;
+  }
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 15px;
+.draggable-list {
+  color: $text-color;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  li {
+    background-color: #fff;
+    display: flex;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    overflow: hidden;
+
+    &:not(:last-of-type) {
+      border-bottom: 1px solid $border-color;
+    }
+  }
+
+  .number {
+    font-size: 1.75rem;
+    height: 100%;
+    width: 3.75rem;
+    background-color: $background-color;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .draggable {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    flex: 1;
+    cursor: pointer;
+
+    .company-name {
+      margin: 0 1.25rem 0 0;
+    }
+  }
+}
+
+li.right .company-name {
+  color: $green;
+}
+
+li.wrong .company-name {
+  color: $red;
+}
+
+li.over .draggable {
+  background-color: $gray;
+}
+
+.check-btn {
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+  outline: none;
+  &:active {
+    transform: scale(0.96);
+  }
+}
+
+.check-btn {
+  background: linear-gradient(0deg, $border-color 0%, $background-color 100%);
+  width: 10rem;
+  height: 2.5rem;
+  line-height: 2.6;
+  padding: 0;
+  border: none;
+}
+.check-btn span {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 0.5rem;
+  width: 100%;
+  height: 100%;
+}
+.check-btn:before,
+.check-btn:after {
+  position: absolute;
+  content: '';
+  right: 0;
+  top: 0;
+  background: $background-color;
+  transition: all 0.3s ease;
+}
+.check-btn:before {
+  height: 0%;
+  width: 2px;
+}
+.check-btn:after {
+  width: 0%;
+  height: 2px;
+}
+.check-btn:hover {
+  background: #fff;
+  box-shadow: none;
+}
+.check-btn:hover:before {
+  height: 100%;
+}
+.check-btn:hover:after {
+  width: 100%;
+}
+.check-btn span:hover {
+  color: $background-color;
+}
+.check-btn span:before,
+.check-btn span:after {
+  position: absolute;
+  content: '';
+  left: 0;
+  bottom: 0;
+  background: $background-color;
+  transition: all 0.3s ease;
+}
+.check-btn span:before {
+  width: 2px;
+  height: 0%;
+}
+.check-btn span:after {
+  width: 0%;
+  height: 2px;
+}
+.check-btn span:hover:before {
+  height: 100%;
+}
+.check-btn span:hover:after {
+  width: 100%;
 }
