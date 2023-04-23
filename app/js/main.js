@@ -44,7 +44,8 @@ function createList() {
   addEventListeners();
 }
 
-//================ Dragevent listeners==================
+//================ Event listeners==================
+// Dragevents
 function addEventListeners() {
   const draggables = document.querySelectorAll('.draggable');
   const dragListItems = document.querySelectorAll('.draggable-list li');
@@ -58,6 +59,20 @@ function addEventListeners() {
     item.addEventListener('drop', dragDrop);
     item.addEventListener('dragenter', dragEnter);
     item.addEventListener('dragleave', dragLeave);
+  });
+}
+
+// Check the order of list items
+function checkOrder() {
+  listItems.forEach((listItem, index) => {
+    const companyName = listItem.querySelector('.draggable').innerText.trim();
+
+    if (companyName !== richestCompanies[index]) {
+      listItem.classList.add('wrong');
+    } else {
+      listItem.classList.remove('wrong');
+      listItem.classList.add('right');
+    }
   });
 }
 
@@ -85,6 +100,7 @@ function dragDrop() {
   this.classList.remove('over');
 }
 
+//================ Swap list items that are drag and drop ==================
 function swapItems(fromIndex, toIndex) {
   const itemOne = listItems[fromIndex].querySelector('.draggable');
   const itemTwo = listItems[toIndex].querySelector('.draggable');
@@ -92,3 +108,6 @@ function swapItems(fromIndex, toIndex) {
   listItems[fromIndex].appendChild(itemTwo);
   listItems[toIndex].appendChild(itemOne);
 }
+
+//================ Check order ==================
+checkBtn.addEventListener('click', checkOrder);
